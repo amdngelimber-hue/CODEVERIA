@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<title>Kelas Informatika C</title>
+<style>
+:root{--bg:#f4f1ff;--card:#ffffffd9;--tx:#1d1b34;--mu:#6e6a8f;--pr:#6c47ff;--pr2:#ff5fa2;--bd:#e6e1fa;--dn:#e5484d;--sh:0 10px 30px -12px #6c47ff40;--hd:linear-gradient(135deg,#6c47ff,#ff5fa2);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0d1e;--card:#1a1730d9;--tx:#efecff;--mu:#a29fc4;--pr:#8e74ff;--bd:#2c2850;--dn:#ff7a7f;--sh:0 10px 30px -12px #000a}}
+:root[data-theme="dark"]{--bg:#0f0d1e;--card:#1a1730d9;--tx:#efecff;--mu:#a29fc4;--pr:#8e74ff;--bd:#2c2850;--dn:#ff7a7f;--sh:0 10px 30px -12px #000a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);background-image:radial-gradient(circle at 10% 0,#6c47ff22,transparent 40%),radial-gradient(circle at 90% 20%,#ff5fa222,transparent 40%);background-attachment:fixed;color:var(--tx);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;min-height:100%}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;max-width:1000px;margin:0 auto;padding:18px 16px 6px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:44px;height:44px;border-radius:14px;background:var(--hd);display:grid;place-items:center;font-size:1.4rem;box-shadow:var(--sh)}
+.brand h1{margin:0;font-size:1.2rem;font-weight:800;letter-spacing:-.02em}
+.brand small{color:var(--mu);font-size:.78rem}
+nav{display:flex;gap:6px;overflow-x:auto;max-width:1000px;margin:10px auto 0;padding:6px 16px;scrollbar-width:none}
+nav button{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--mu);padding:9px 16px;border-radius:999px;cursor:pointer;font:600 .88rem inherit;font-family:inherit;transition:.2s}
+nav button:hover{transform:translateY(-2px);color:var(--pr)}
+nav button.on{background:var(--hd);color:#fff;border-color:transparent;box-shadow:var(--sh)}
+main{max-width:1000px;margin:0 auto;padding:16px}
+.card{background:var(--card);backdrop-filter:blur(8px);border:1px solid var(--bd);border-radius:20px;padding:20px;margin-bottom:16px;box-shadow:var(--sh);animation:up .4s ease both}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero{background:var(--hd);color:#fff;border:0;position:relative;overflow:hidden;padding:30px 24px}
+.hero:after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:#ffffff26}
+.hero h2{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin:0 0 8px;position:relative}
+.hero p{margin:0;max-width:520px;opacity:.92;position:relative}
+.chip{display:inline-block;background:#ffffff33;padding:4px 12px;border-radius:999px;font-size:.78rem;margin-bottom:12px;position:relative}
+h2{margin:0 0 14px;font-size:1.15rem;font-weight:800}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.grid .card{margin:0}
+.stat{text-align:center;transition:.25s}.stat:hover{transform:translateY(-4px)}
+.stat i{font-style:normal;font-size:1.6rem;display:block}
+.stat b{display:block;font-size:2.2rem;font-weight:800;background:var(--hd);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.2}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:.9rem}
+th{text-align:left;padding:6px 12px;color:var(--mu);font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+td{padding:12px;background:var(--bg);text-align:left}
+td:first-child{border-radius:12px 0 0 12px}td:last-child{border-radius:0 12px 12px 0}
+tbody tr{transition:.2s}tbody tr:hover td{background:#6c47ff18}
+.bdg{background:var(--hd);color:#fff;padding:3px 12px;border-radius:999px;font-size:.78rem;font-weight:600}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:end}
+input,select{width:100%;padding:10px 12px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx);font:inherit;font-size:.92rem}
+input:focus,select:focus{outline:2px solid var(--pr);outline-offset:1px}
+label{font-size:.76rem;color:var(--mu);font-weight:600}
+.btn{border:0;background:var(--hd);color:#fff;padding:10px 18px;border-radius:12px;cursor:pointer;font:600 .92rem inherit;font-family:inherit;box-shadow:var(--sh);transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.w{background:var(--card);color:var(--pr);border:1px solid var(--bd)}
+.del{background:transparent;color:var(--dn);border:1px solid var(--dn);padding:5px 12px;border-radius:10px;cursor:pointer;font-family:inherit}
+.del:hover{background:var(--dn);color:#fff}
+.mu{color:var(--mu);font-size:.88rem}
+.av{width:42px;height:42px;border-radius:50%;object-fit:cover;display:inline-grid;place-items:center;background:var(--hd);color:#fff;font-weight:800;vertical-align:middle;box-shadow:var(--sh)}
+.act{display:flex;gap:6px;flex-wrap:nowrap}
+.ft{background:transparent;color:var(--pr);border:1px solid var(--pr);padding:5px 10px;border-radius:10px;cursor:pointer;font-family:inherit;white-space:nowrap}
+#md{position:fixed;inset:0;background:#0008;backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px}
+#md .card{width:100%;max-width:340px;margin:0}
+#md input{margin-bottom:12px}
+#err{color:var(--dn);font-size:.85rem;min-height:1.3em}
+.ph{width:86px;height:86px;border-radius:50%;border:2px dashed var(--pr);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;color:var(--pr);font-size:.62rem;text-align:center;background:#030818 center/cover no-repeat;transition:.2s;flex:none;line-height:1.2}
+.ph:hover{box-shadow:var(--sh);transform:scale(1.05)}.ph b{font-size:1.4rem}
+.ph.has{border-style:solid}.ph.has b,.ph.has span{display:none}
+.avb{background:none;border:0;padding:0;cursor:pointer;border-radius:50%;transition:.2s}
+.avb:hover{transform:scale(1.12);box-shadow:var(--sh)}
+.code{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.code i{position:absolute;font-style:normal;font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;font-weight:800;color:#fff;opacity:.17;text-shadow:0 0 18px #bfe3ff;transform:rotate(var(--r,0deg));animation:fl 6s ease-in-out infinite alternate}
+.code i:nth-child(even){animation-delay:-3s;opacity:.12}
+@keyframes fl{to{transform:translateY(-8px) rotate(var(--r,0deg))}}
+.pw{position:relative;margin-bottom:12px}
+#md .pw input{margin-bottom:0;padding-right:46px}
+#eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;cursor:pointer;font-size:1.1rem;padding:6px 8px;border-radius:8px;line-height:1}
+#eye:hover{background:#1c3cff33}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;pointer-events:none;display:flex;gap:14px;align-items:center;background:#0a1745;border:1px solid #2a5cff;color:var(--tx);padding:10px 16px;border-radius:14px;box-shadow:var(--sh);transition:.25s;z-index:5;font-size:.9rem}
+#toast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+#undo{background:none;border:0;color:#6fb2ff;font:700 .9rem inherit;font-family:inherit;cursor:pointer}
+.dayc{text-align:center;vertical-align:middle;background:#0a1a5c!important;border-left:3px solid #2a5cff}
+.dayc .bdg{display:inline-block;padding:6px 16px;font-size:.85rem}
+.gs td{border-top:3px solid #0a1745}
+/* Tema biru tua + hitam dengan efek RGB */
+html:root:root:root{--bg:#02040f;--card:#071033d9;--tx:#e8efff;--mu:#8da2d8;--pr:#4d8bff;--bd:#17306e;--dn:#ff6b7a;--sh:0 0 22px -6px #1f5bff77;--hd:linear-gradient(120deg,#0a3cff,#00b7ff,#7a2cff,#ff2cb4,#0a3cff);color-scheme:dark}
+body{background:linear-gradient(160deg,#000 0%,#030b2e 45%,#000 100%) fixed!important;background-image:linear-gradient(160deg,#000 0%,#030b2e 45%,#000 100%)!important}
+body:before,body:after{content:"";position:fixed;z-index:-1;width:60vmax;height:60vmax;border-radius:50%;filter:blur(90px);opacity:.28;pointer-events:none;animation:rgb 14s linear infinite}
+body:before{left:-20vmax;top:-20vmax;background:#0a3cff}
+body:after{right:-25vmax;bottom:-25vmax;background:#00b7ff;animation-direction:reverse}
+@keyframes rgb{to{filter:blur(90px) hue-rotate(360deg)}}
+@keyframes flow{0%{background-position:0 50%}100%{background-position:300% 50%}}
+.logo,.hero,.btn,nav button.on,.bdg,.av,.stat b{background-size:300% 100%;animation:flow 9s linear infinite}
+.btn.w{background:var(--card);animation:none}
+.card{border-color:#1b3a8f;box-shadow:0 0 0 1px #2a5cff22,0 12px 32px -14px #000}
+.stat:hover,.card:hover{border-color:#3d7bff}
+tbody tr:hover td{background:#1c3cff2e}
+td{background:#050b24}
+input,select{background:#030818}
+nav button{background:#071033aa}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
+.fmmsg{min-height:1.4em;margin-top:12px;font-size:.9rem;color:#5fe3a1;font-weight:600}.fmmsg.bad{color:var(--dn)}
+/* Efek 3D */
+.card{animation:flip .6s cubic-bezier(.2,.8,.2,1) backwards;transition:transform .15s ease-out,border-color .2s,box-shadow .3s;will-change:transform;box-shadow:0 1px 0 #ffffff14 inset,0 0 0 1px #2a5cff22,0 18px 34px -16px #000,0 6px 0 -2px #040b2c}
+@keyframes flip{from{opacity:0;transform:perspective(900px) rotateX(-16deg) translateY(26px) scale(.97)}to{opacity:1;transform:perspective(900px) rotateX(0) translateY(0)}}
+.grid .card:nth-child(2){animation-delay:.07s}.grid .card:nth-child(3){animation-delay:.14s}.grid .card:nth-child(4){animation-delay:.21s}
+.card:hover{box-shadow:0 1px 0 #ffffff1f inset,0 0 26px -6px #2a5cff99,0 26px 40px -16px #000,0 6px 0 -2px #040b2c}
+.hero{box-shadow:0 2px 0 #ffffff44 inset,0 8px 0 -2px #0a2a9a,0 28px 46px -16px #1f5bffcc}
+.hero h2{text-shadow:0 3px 0 #0a1f7a,0 10px 20px #0009}
+.stat{backdrop-filter:none;transform-style:preserve-3d}
+.stat:hover{transform:none}
+.stat i,.stat span{display:block;transform:translateZ(30px)}
+.stat b{transform:translateZ(46px);filter:drop-shadow(0 4px 0 #061a6e) drop-shadow(0 10px 12px #000a)}
+.btn{box-shadow:0 5px 0 #0a2a9a,0 12px 22px -6px #000c,inset 0 1px 0 #ffffff55}
+.btn.w{box-shadow:0 4px 0 #0a1745,0 10px 18px -6px #000c,inset 0 1px 0 #ffffff1f}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 #0a2a9a,0 3px 8px #000a}
+.btn.w:active{box-shadow:0 0 0 #0a1745,0 2px 6px #000a}
+nav button{box-shadow:0 4px 0 #040a24,0 8px 14px -6px #000c,inset 0 1px 0 #ffffff14}
+nav button.on{box-shadow:0 4px 0 #0a2a9a,0 10px 18px -4px #1f5bff99,inset 0 1px 0 #ffffff55}
+nav button:active{transform:translateY(3px);box-shadow:0 1px 0 #040a24}
+.del{box-shadow:0 3px 0 #7a1f2b}.del:active{transform:translateY(3px);box-shadow:0 0 0 #7a1f2b}
+.logo{box-shadow:0 5px 0 #0a2a9a,0 12px 20px -4px #000c,inset 0 1px 0 #ffffff66}
+span.av{box-shadow:inset -5px -7px 12px #0007,inset 4px 4px 10px #ffffff66,0 8px 14px -4px #000}
+img.av{border:2px solid #ffffff44;box-shadow:0 8px 14px -4px #000}
+.ph{box-shadow:inset 0 4px 12px #000c,0 1px 0 #ffffff1a}
+.bdg{box-shadow:inset 0 1px 0 #ffffff66,0 3px 0 #061a6e,0 6px 10px -3px #000a}
+td{box-shadow:0 5px 10px -5px #000d,inset 0 1px 0 #ffffff12}
+tbody tr:hover td{box-shadow:0 8px 16px -6px #000,0 0 14px -4px #2a5cff99,inset 0 1px 0 #ffffff22}
+input,select{box-shadow:inset 0 3px 8px #000c,0 1px 0 #ffffff12}
+#md .card{animation:pop .5s cubic-bezier(.2,1.4,.4,1) backwards}
+@keyframes pop{from{opacity:0;transform:perspective(700px) rotateX(-30deg) translateY(30px) scale(.8)}to{opacity:1;transform:perspective(700px) rotateX(0) translateY(0)}}
+.gal h2{margin-bottom:6px}
+.gadd{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:10px 0 4px}.gadd input{flex:1;min-width:180px}
+.gbtn{display:inline-block;cursor:pointer;white-space:nowrap;color:#fff!important;font-size:.92rem!important}
+.gal{overflow:hidden}
+.gg{display:flex;flex-direction:column;gap:46px;margin:26px auto 8px;max-width:700px;padding-top:10px}
+#lb{position:fixed;inset:0;background:#000e;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:20px;z-index:10;cursor:zoom-out}
+#lb.on{display:flex;animation:pop .35s ease}
+#lb img{max-width:100%;max-height:80vh;border-radius:16px;box-shadow:0 20px 60px #000}
+#lb p{color:#fff;margin:0}
+.av.xl{width:60px;height:60px;font-size:1.5rem}
+.ring{display:inline-block;padding:4px;border-radius:50%;background:var(--hd);background-size:300% 100%;animation:flow 9s linear infinite;line-height:0;box-shadow:0 10px 24px -8px #000,0 0 22px -6px #1f5bffaa}
+.ring img.av{border:3px solid #050b24}
+button.ring{border:0;cursor:pointer}button.ring:hover{transform:scale(1.06)}
+.sg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:6px auto 0;max-width:440px}
+.sc{background:#050b24;border:1px solid #1b3a8f;border-radius:20px;padding:16px 10px 14px;text-align:center;box-shadow:0 18px 34px -16px #000,0 0 0 1px #2a5cff22;animation:pop2 .65s cubic-bezier(.2,.8,.2,1) backwards;transition:transform .25s,border-color .25s,box-shadow .25s}
+.sc:hover{transform:translateY(-6px);border-color:#3d7bff;box-shadow:0 24px 40px -16px #000,0 0 26px -6px #2a5cff99}
+.sc b{display:block;margin-top:10px;font-size:.95rem;font-weight:800;line-height:1.3;word-break:break-word}
+.sc .nim{display:inline-block;margin-top:8px;font-size:.8rem;color:var(--mu);letter-spacing:.06em;background:#0a1745;padding:4px 14px;border-radius:999px}
+.sc .del{margin-top:14px}
+@keyframes pop2{from{opacity:0;transform:perspective(700px) translateY(34px) rotateX(-18deg) scale(.9)}to{opacity:1;transform:none}}
+.pic{margin:0;position:relative;cursor:zoom-in;background:#fdf8ee;padding:12px 12px 22px;border-radius:6px;box-shadow:0 22px 34px -12px #000c,0 2px 0 #fff8 inset,0 0 0 1px #0002}
+.pic:before{content:"";position:absolute;top:-13px;left:50%;width:92px;height:28px;margin-left:-46px;transform:rotate(-4deg);background:rgba(255,205,90,.82);box-shadow:0 2px 6px #0005;clip-path:polygon(0 0,4% 18%,0 36%,4% 54%,0 72%,4% 90%,0 100%,100% 100%,96% 82%,100% 64%,96% 46%,100% 28%,96% 10%,100% 0)}
+.pic:nth-child(3n+2):before{background:rgba(255,140,185,.8);transform:rotate(3deg)}
+.pic:nth-child(3n):before{background:rgba(120,225,200,.8);transform:rotate(-2deg)}
+.pic:after{content:"♡";position:absolute;right:16px;bottom:10px;color:#e8607f;font-size:1.15rem;opacity:.85}
+.pic:nth-child(3n+2):after{content:"✦";color:#e5a93c}
+.pic:nth-child(3n):after{content:"☆";color:#4fb8a4}
+.pimg{overflow:hidden;border-radius:3px;background:#f3ead9}
+.pic img{display:block;width:100%;height:auto;max-height:78vh;object-fit:contain}
+.pic figcaption{padding:12px 36px 0;text-align:center;font-family:Caveat,"Segoe Print","Bradley Hand",cursive;font-size:1.4rem;line-height:1.2;color:#3b2f2a;background:none;border:0}
+.pic .no{position:absolute;left:22px;top:22px;z-index:1;background:#fffc;color:#3b2f2a;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;backdrop-filter:blur(4px)}
+.pdel{position:absolute;top:-12px;right:-10px;z-index:2;width:30px;height:30px;border:0;border-radius:50%;background:#ff5f7e;color:#fff;font-size:.85rem;cursor:pointer;box-shadow:0 4px 10px #0007;transition:.2s}.pdel:hover{background:#e5484d;transform:scale(1.15) rotate(8deg)}
+.rv{opacity:0;transform:translateX(-60px) translateY(30px) rotate(calc(var(--tilt,0deg) - 8deg)) scale(.92);transition:opacity .8s ease,transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.r{transform:translateX(60px) translateY(30px) rotate(calc(var(--tilt,0deg) + 8deg)) scale(.92)}
+.rv.in{opacity:1;transform:translateX(0) translateY(0) rotate(var(--tilt,0deg)) scale(1)}
+.rv.in:hover{transform:translateX(0) translateY(-8px) rotate(0deg) scale(1.03);z-index:3}
+.rv img{transform:scale(1.18);filter:blur(8px) brightness(.8)}
+.rv.in img{transform:none;filter:none;transition:transform 1.4s cubic-bezier(.2,.8,.2,1) .15s,filter 1.1s ease .15s}
+.rv.in:hover img{transform:scale(1.05);transition:transform .7s}
+.rv figcaption{opacity:0;transform:translateY(14px)}
+.rv.in figcaption{opacity:1;transform:none;transition:opacity .7s ease .55s,transform .7s ease .55s}
+.rv .no{opacity:0;transform:scale(.6)}
+.rv.in .no{opacity:1;transform:none;transition:.6s ease .4s}
+@media (prefers-reduced-motion:reduce){.rv img,.rv figcaption,.rv .no{opacity:1;transform:none;filter:none;transition:none}.rv{opacity:1;transform:rotate(var(--tilt,0deg));transition:none}}
+.locked header,.locked nav,.locked main{display:none}
+#gate{position:fixed;inset:0;z-index:8;display:none;align-items:center;justify-content:center;padding:16px;overflow:auto;background:linear-gradient(160deg,#000 0%,#030b2e 45%,#000 100%)}
+#gate .gc{width:100%;max-width:400px;margin:auto;text-align:center}
+#gate .gc label{display:block;text-align:left}
+#gate input{margin-bottom:12px}
+#gate .brand h1{text-align:left}
+.gst{font-size:2.4rem;margin-bottom:6px}
+#md{z-index:20}
+.fl{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 4px}
+.fl button{border:1px solid var(--bd);background:#071033aa;color:var(--mu);padding:7px 14px;border-radius:999px;cursor:pointer;font:600 .82rem inherit;font-family:inherit}
+.fl button.on{background:var(--hd);color:#fff;border-color:transparent}
+.rg{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:#050b24;border:1px solid #1b3a8f;border-radius:16px;padding:12px 14px;margin-top:10px;animation:pop2 .5s cubic-bezier(.2,.8,.2,1) backwards}
+.rg .inf{flex:1;min-width:150px}.rg .inf b{display:block}.rg small{color:var(--mu)}
+.stb{padding:3px 12px;border-radius:999px;font-size:.74rem;font-weight:700;text-transform:capitalize}
+.st-menunggu{background:#4a3a00;color:#ffd466}.st-disetujui{background:#0a3a22;color:#5fe3a1}.st-ditolak{background:#4a121a;color:#ff8a96}
+.newb{display:inline-block;background:#ff2cb4;color:#fff;font-size:.62rem;padding:1px 8px;border-radius:999px;vertical-align:middle;animation:pls 1.6s ease-in-out infinite}
+@keyframes pls{50%{opacity:.55}}
+.act2{display:flex;gap:6px;flex-wrap:wrap}
+.act2 button{border-radius:10px;padding:5px 12px;cursor:pointer;font-family:inherit;border:1px solid}
+.rok{background:#0a3a22;color:#5fe3a1;border-color:#5fe3a1!important}.rno{background:#3a2a00;color:#ffd466;border-color:#ffd466!important}
+header{max-width:none;margin:0;padding:14px 20px 6px}
+.hr{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto;justify-content:flex-end}
+#gate{background:#000b;backdrop-filter:blur(5px);z-index:15}
+@media (max-width:560px){header{padding:12px 12px 4px;gap:8px}.brand{gap:8px}.logo{width:38px;height:38px;font-size:1.2rem}.brand h1{font-size:.95rem}.brand small{display:none}.hr{gap:6px}.hr .btn{padding:7px 10px;font-size:.76rem;white-space:nowrap}#who{display:none}header{flex-wrap:nowrap}.brand{min-width:0;flex:1}.brand h1{line-height:1.15}.hr{flex-wrap:nowrap;flex:none}}
+.sc{position:relative}
+.sc .mine{position:absolute;top:8px;left:8px;background:#ff2cb4;color:#fff;font-size:.62rem;font-weight:700;padding:2px 9px;border-radius:999px;z-index:1}
+.brand small a{color:var(--pr);text-decoration:underline dotted;text-underline-offset:3px;font-weight:600}
+#ft{text-align:center;padding:10px 16px 34px}
+#ft p{margin:0 0 10px}
+.ig{display:inline-block;background:var(--hd);background-size:300% 100%;animation:flow 9s linear infinite;color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;padding:10px 20px;border-radius:999px;box-shadow:0 5px 0 #0a2a9a,0 12px 22px -6px #000c,inset 0 1px 0 #ffffff55;transition:.2s}
+.ig:hover{transform:translateY(-2px)}.ig:active{transform:translateY(4px);box-shadow:0 1px 0 #0a2a9a}
+.igc{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--tx);transition:transform .25s,box-shadow .25s,border-color .25s}
+.igc:hover{transform:translateY(-4px);border-color:#dc2743;box-shadow:0 20px 36px -14px #000,0 0 28px -6px #dc2743aa}
+.igi{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;flex:none;background:linear-gradient(45deg,#f09433,#e6683c 30%,#dc2743 55%,#cc2366 75%,#bc1888);box-shadow:0 8px 18px -6px #dc2743aa}
+.igt{flex:1;min-width:0}.igt b{display:block;font-size:1.02rem}.igt small{color:var(--mu)}
+.iga{font-size:1.5rem;color:var(--mu);transition:transform .25s}.igc:hover .iga{transform:translate(3px,-3px);color:#fff}
+#nt{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:12px;left:12px;margin-left:auto;max-width:380px;z-index:30;display:flex;align-items:center;gap:10px;background:#0a1745;border:1px solid #ff2cb4;color:var(--tx);padding:12px 14px;border-radius:16px;box-shadow:0 14px 34px -8px #000,0 0 26px -6px #ff2cb4aa;transform:translateY(-130%);opacity:0;pointer-events:none;transition:transform .45s cubic-bezier(.2,1.2,.4,1),opacity .3s;font-size:.9rem}
+#nt.on{transform:none;opacity:1;pointer-events:auto}
+#nt .ntd{width:10px;height:10px;border-radius:50%;background:#ff2cb4;flex:none;animation:pls 1.2s ease-in-out infinite}
+#ntx{flex:1;font-weight:600;line-height:1.35}
+#ntb{border:0;background:var(--hd);color:#fff;padding:7px 12px;border-radius:10px;cursor:pointer;font:700 .8rem inherit;font-family:inherit;white-space:nowrap}
+#ntc{border:0;background:none;color:var(--mu);cursor:pointer;font-size:1rem;padding:2px 4px}
+.nb{display:inline-block;min-width:20px;padding:1px 7px;margin-left:6px;border-radius:999px;background:#ff2cb4;color:#fff;font-size:.7rem;font-weight:800;text-align:center;animation:pls 1.4s ease-in-out infinite}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">🎓</div><div><h1>Kelas Informatika C</h1><small>Portal informasi <a href="https://www.instagram.com/codeveria" target="_blank" rel="noopener noreferrer">CODEVERIA</a></small></div></div>
+  <div class="hr"><span id="who" class="mu"></span><button class="btn w" id="rbtn"></button><button class="btn w" id="auth"></button></div>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<footer id="ft"><p class="mu">Kelas Informatika C · CODEVERIA</p><a class="ig" href="https://www.instagram.com/codeveria" target="_blank" rel="noopener noreferrer">📸 Ikuti @codeveria di Instagram</a></footer>
+
+<div id="md"><div class="card">
+  <h2>Login Admin</h2>
+  <label>Username</label><input id="u" autocomplete="username">
+  <label>Password</label><div class="pw"><input id="p" type="password" autocomplete="current-password"><button type="button" id="eye" aria-label="Tampilkan password" title="Tampilkan / sembunyikan password">👁️</button></div>
+  <div id="err"></div>
+  <div style="display:flex;gap:8px"><button class="btn" id="go">Masuk</button><button class="del" id="cx" style="color:var(--mu);border-color:var(--bd)">Batal</button></div>
+</div></div>
+
+<div id="gate"></div>
+<div id="nt"><span class="ntd"></span><span id="ntx"></span><button id="ntb"></button><button id="ntc" aria-label="Tutup">✕</button></div>
+<div id="lb"><img id="lbi" alt=""><p id="lbc"></p></div>
+<script>
+const KEY="kelas_ifc_data_v3", SK="kelas_ifc_admin", USER="admin", PASS="kelastic";
+const HARI=["Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+const SEC={
+ mhs:{t:"Data Mahasiswa",f:[["nim","NIM"],["nama","Nama"]]},
+ mk:{t:"Mata Kuliah, Dosen & Jadwal",f:[["nama","Nama Mata Kuliah"],["dosen","Dosen"],["hari","Hari",HARI],["mulai","Jam Mulai","time"],["selesai","Jam Selesai","time"],["ruang","Ruang"]]}
+};
+const SEED={
+ mhs:[{nim:"2401001",nama:"Contoh Mahasiswa 1",email:"mhs1@kampus.ac.id"},{nim:"2401002",nama:"Contoh Mahasiswa 2",email:"mhs2@kampus.ac.id"}],
+ mk:[
+  {nama:"Algoritma dan Pemrograman",dosen:"Dosen Pengampu 1",hari:"Senin",mulai:"08:00",selesai:"10:30",ruang:"Lab 1"},
+  {nama:"Struktur Data",dosen:"Dosen Pengampu 2",hari:"Senin",mulai:"13:00",selesai:"15:30",ruang:"Lab 2"},
+  {nama:"Basis Data",dosen:"Dosen Pengampu 3",hari:"Selasa",mulai:"08:00",selesai:"10:30",ruang:"Ruang 201"},
+  {nama:"Jaringan Komputer",dosen:"Dosen Pengampu 4",hari:"Rabu",mulai:"10:00",selesai:"12:30",ruang:"Lab Jaringan"},
+  {nama:"Pemrograman Web",dosen:"Dosen Pengampu 5",hari:"Kamis",mulai:"08:00",selesai:"10:30",ruang:"Lab 1"},
+  {nama:"Sistem Operasi",dosen:"Dosen Pengampu 6",hari:"Jumat",mulai:"09:00",selesai:"11:30",ruang:"Ruang 202"}
+ ]
+};
+const IC={pendaftar:"📝",home:"🏠",mhs:"👩‍🎓",mk:"📚",jadwal:"🗓️"};
+let DB, admin=false, tab="home", flash="";
+try{admin=sessionStorage.getItem(SK)==="1"}catch(e){}
+const hr=x=>{const i=HARI.indexOf(x);return i<0?9:i};
+function load(){
+ try{const r=localStorage.getItem(KEY); if(r){DB=JSON.parse(r);return}}catch(e){}
+ try{const o=JSON.parse(localStorage.getItem("kelas_ifc_data_v2")||"null");
+  if(o){const mk=(o.mk||[]).map(x=>({...x})),used=new Set();
+   (o.jadwal||[]).forEach(j=>{const m=mk.find(x=>x.nama===j.mk&&!used.has(x));
+    if(m){used.add(m);Object.assign(m,{dosen:j.dosen,hari:j.hari,mulai:j.mulai,selesai:j.selesai,ruang:j.ruang})}
+    else mk.push({nama:j.mk,dosen:j.dosen,hari:j.hari,mulai:j.mulai,selesai:j.selesai,ruang:j.ruang})});
+   DB={mhs:o.mhs||[],mk};save();return}}catch(e){}
+ DB=JSON.parse(JSON.stringify(SEED)); save();
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(DB));return true}catch(e){return false}}
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $=id=>document.getElementById(id);
+
+const av=(r,c="")=>r.foto?`<img class="av ${c}" src="${r.foto}" alt="${esc(r.nama||"")}">`:`<span class="av ${c}">${esc((r.nama||"?").trim().charAt(0).toUpperCase())}</span>`;
+function resize(file){return new Promise((ok,no)=>{const fr=new FileReader();fr.onerror=no;fr.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const n=240,c=document.createElement("canvas");c.width=c.height=n;const m=Math.min(im.width,im.height),sx=(im.width-m)/2,sy=(im.height-m)/2;c.getContext("2d").drawImage(im,sx,sy,m,m,0,0,n,n);ok(c.toDataURL("image/jpeg",.8))};im.src=fr.result};fr.readAsDataURL(file)})}
+function shrink(file,max){return new Promise((ok,no)=>{const fr=new FileReader();fr.onerror=no;fr.onload=()=>{const im=new Image();im.onerror=no;im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.78))};im.src=fr.result};fr.readAsDataURL(file)})}
+const IGURL="https://www.instagram.com/codeveria?mdxt=NTc3ZGJzbDR6dTV5";
+const ig=()=>`<a class="card nt igc" href="${IGURL}" target="_blank" rel="noopener noreferrer"><span class="igi"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></span><span class="igt"><b>Ikuti kami di Instagram</b><small>@codeveria · tekan untuk membuka Instagram</small></span><span class="iga">↗</span></a>`;
+const gal=()=>{const F=DB.foto||[];return `<div class="card nt gal"><h2>📸 Galeri Kelas</h2>`+(admin?`<div class="gadd"><input id="gcap" placeholder="Keterangan foto (opsional)"><label class="btn gbtn">+ Tambah Foto<input id="gf" type="file" accept="image/*" multiple hidden></label></div><div id="gmsg" class="fmmsg"></div>`:`<p class="mu">Kumpulan momen kebersamaan Kelas Informatika C.</p>`)+(F.length?`<div class="gg">${F.map((p,i)=>`<figure class="pic rv ${i%2?"r":"l"}" style="--tilt:${[-2.2,1.6,-1.2,2][i%4]}deg" data-i="${i}"><span class="no">✦ ${i+1} / ${F.length}</span><div class="pimg"><img src="${p.src}" alt="${esc(p.cap||"Foto galeri kelas")}" loading="lazy"></div>${p.cap?`<figcaption>${esc(p.cap)}</figcaption>`:""}${admin?`<button class="pdel" data-d="${i}" title="Hapus foto">✕</button>`:""}</figure>`).join("")}</div>`:`<p class="mu">Belum ada foto di galeri kelas.</p>`)+`</div>`};
+function openLb(x){$("lbi").src=x.src;$("lbc").textContent=x.cap||"";$("lb").classList.add("on")}
+$("lb").onclick=()=>$("lb").classList.remove("on");
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("lb").classList.remove("on")});
+function wireHome(){
+ const f=$("gf");
+ if(f)f.onchange=async()=>{const fs=[...f.files];if(!fs.length)return;const cap=$("gcap").value.trim(),m=$("gmsg");m.className="fmmsg";m.textContent="⏳ Memproses foto...";let n=0;
+  const nw=[];for(const x of fs){try{nw.push({src:await shrink(x,900),cap});n++}catch(e){}}DB.foto.unshift(...nw);
+  const ok=save();render();const g=$("gmsg");if(n){const fp=document.querySelector(".pic");if(fp)fp.scrollIntoView({behavior:"smooth",block:"center"})}
+  if(g){g.textContent=n?(ok?`✅ ${n} foto ditambahkan`:"⚠️ Foto tampil, tapi penyimpanan browser penuh sehingga mungkin tidak tersimpan permanen. Hapus foto lama atau pilih lebih sedikit."):"⚠️ Foto tidak bisa dibaca";if(!ok||!n)g.className="fmmsg bad"}};
+ document.querySelectorAll(".pdel").forEach(b=>b.onclick=e=>{e.stopPropagation();DB.foto.splice(+b.dataset.d,1);save();render()});
+ document.querySelectorAll(".pic").forEach(p=>p.onclick=()=>{const x=DB.foto[+p.dataset.i];if(x)openLb(x)});
+ const els=document.querySelectorAll(".rv");
+ if(!("IntersectionObserver" in window)){els.forEach(e=>e.classList.add("in"));return}
+ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+ els.forEach(e=>io.observe(e));
+}
+const sg=rows=>rows.length?`<div class="sg">${rows.map((r,k)=>{const c=!!r._c,i=c?-1:DB.mhs.indexOf(r),mine=c?r._u===REG.uid:(!!r.owner&&r.owner===REG.uid);return `<div class="sc" style="animation-delay:${Math.min(k,12)*70}ms">${mine?`<span class="mine">Data saya</span>`:""}${admin&&!c?`<button class="avb ring" data-p="${i}" title="Klik untuk ganti foto">${av(r,"xl")}</button>`:`<div class="ring">${av(r,"xl")}</div>`}<b>${esc(r.nama||"-")}</b><span class="nim">${canNim()?"NIM "+esc(r.nim||"-"):"🔒 NIM tersembunyi"}</span>${admin?`<div><button class="del" ${c?`data-cu="${esc(r._u)}"`:`data-i="${i}"`}>Hapus</button></div>`:""}</div>`}).join("")}</div>`:`<p class="mu">Belum ada data.</p>`;
+const MH={cloud:{},nim:{}};let lastSig="";
+const REG={mode:"local",ready:false,uid:null,regs:{},dec:{},canWrite:true,owner:false,db:null};
+const rk="kelas_ifc_reg_v1";
+const lread=()=>{try{return JSON.parse(localStorage.getItem(rk)||"{}")}catch(e){return{}}};
+const persist=()=>{if(REG.mode==="local"){try{localStorage.setItem(rk,JSON.stringify({regs:REG.regs,dec:REG.dec}))}catch(e){}}};
+const stOf=id=>{const r=REG.regs[id];if(!r)return null;const d=REG.dec[id];return d&&d.rt===r.t?d.status:"menunggu"};
+const regList=()=>Object.keys(REG.regs).map(id=>({id,...REG.regs[id],st:stOf(id)})).sort((a,b)=>b.t-a.t);
+const pending=()=>regList().filter(x=>x.st==="menunggu").length;
+async function regInit(){
+ let db=null,user=null,id=null;
+ try{if(window.claude&&window.claude.use){db=await claude.use("db");user=await claude.use("user")}}catch(e){}
+ if(db&&user){try{id=await user.id()}catch(e){}}
+ if(db&&user&&id){
+  REG.mode="cloud";REG.db=db;REG.uid=id;
+  try{REG.canWrite=(await user.can("data.write"))!==false}catch(e){}
+  try{REG.owner=!!(await user.isOwner())||!!(await user.canEdit())}catch(e){}
+  const mine=(path,key)=>db.doc(path+"/"+id).onSnapshot(sn=>{if(sn.exists)REG[key][id]=sn.data();else delete REG[key][id];refreshUI()},()=>{});
+  mine("reg","regs");mine("ok","dec");
+  db.collection("mhs").onSnapshot(q=>{const m={};q.docs.forEach(d=>m[d.id]=d.data());MH.cloud=m;refreshUI()},()=>{});
+  db.collection("mhsn").onSnapshot(q=>{const m={};q.docs.forEach(d=>m[d.id]=(d.data()||{}).nim);MH.nim=m;refreshUI()},()=>{});
+  if(REG.owner){
+   db.collection("reg").onSnapshot(q=>{const m={};q.docs.forEach(d=>m[d.id]=d.data());REG.regs=m;refreshUI()},()=>{});
+   db.collection("ok").onSnapshot(q=>{const m={};q.docs.forEach(d=>m[d.id]=d.data());REG.dec=m;refreshUI()},()=>{});
+  }
+ }else{
+  REG.mode="local";
+  try{id=localStorage.getItem("kelas_ifc_dev");if(!id){id="d"+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem("kelas_ifc_dev",id)}}catch(e){}
+  REG.uid=id||"d"+Math.random().toString(36).slice(2);
+  const o=lread();REG.regs=o.regs||{};REG.dec=o.dec||{};
+  addEventListener("storage",e=>{if(e.key===rk){const o=lread();REG.regs=o.regs||{};REG.dec=o.dec||{};refreshUI()}});
+ }
+}
+async function regSubmit(nama,nim){
+ const o={nama,nim,t:Date.now()};
+ if(REG.mode==="cloud")await REG.db.doc("reg/"+REG.uid).set(o);
+ REG.regs[REG.uid]=o;persist();
+}
+async function regDecide(id,status){
+ const r=REG.regs[id];if(!r)return;const d={status,t:Date.now(),rt:r.t};
+ if(REG.mode==="cloud")await REG.db.doc("ok/"+id).set(d);
+ REG.dec[id]=d;persist();
+}
+async function regRemove(id){
+ if(REG.mode==="cloud"){await REG.db.doc("reg/"+id).delete();await REG.db.doc("ok/"+id).delete()}
+ delete REG.regs[id];delete REG.dec[id];persist();
+}
+const canNim=()=>admin||(REG.ready&&stOf(REG.uid)==="disetujui");
+const myNim=()=>{const m=myMh();return m?(REG.mode==="cloud"?(MH.nim[REG.uid]||""):(m.nim||"")):""};
+const cloudRows=()=>Object.keys(MH.cloud).map(u=>({...MH.cloud[u],nim:MH.nim[u],_c:1,_u:u})).sort((a,b)=>(b.t||0)-(a.t||0));
+const myMh=()=>REG.mode==="cloud"?(MH.cloud[REG.uid]||null):(DB.mhs.find(x=>x.owner===REG.uid)||null);
+const canSelf=()=>!admin&&REG.ready&&REG.canWrite&&stOf(REG.uid)==="disetujui";
+const selfCard=()=>{const m=myMh(),rg=REG.regs[REG.uid]||{};return `<div class="card"><h2>🙋 Data Saya</h2><p class="mu">${m?"Data Anda sudah ada. Anda bisa mengubah foto dan datanya, atau menghapusnya lalu menambahkannya lagi.":"Sebagai mahasiswa terdaftar, Anda bisa menambahkan satu data diri (foto, NIM, nama). Jika nanti dihapus, Anda bisa menambahkannya lagi."}</p><form id="sf"><div style="grid-column:1/-1;display:flex;align-items:center;gap:14px"><label class="ph${m&&m.foto?" has":""}" id="sph" ${m&&m.foto?`style="background-image:url(${m.foto})"`:""}><b>📷</b><span>Foto</span><input type="file" accept="image/*" hidden></label><span class="mu">Klik bulatan untuk memilih foto</span></div><div><label>NIM</label><input name="nim" value="${esc(m?myNim():(rg.nim||""))}" autocomplete="off"></div><div><label>Nama</label><input name="nama" value="${esc(m?m.nama:(rg.nama||""))}" autocomplete="off"></div><button class="btn">${m?"Simpan Perubahan":"+ Tambah Data Saya"}</button>${m?`<button type="button" class="del" id="sdel">Hapus Data Saya</button>`:""}</form><div id="smsg" class="fmmsg"></div></div>`};
+function wireSelf(){
+ let file=null;const sf=$("sf"),fi=sf.querySelector("input[type=file]"),say=(t,bad)=>{const m=$("smsg");if(m){m.className="fmmsg"+(bad?" bad":"");m.textContent=t}};
+ fi.onchange=async()=>{if(!fi.files[0])return;file=fi.files[0];try{const u=await resize(file),ph=$("sph");ph.style.backgroundImage=`url(${u})`;ph.classList.add("has")}catch(x){alert("Foto tidak bisa dibaca.");file=null}};
+ sf.onsubmit=async e=>{e.preventDefault();const nim=sf.nim.value.trim(),nama=sf.nama.value.trim();
+  if(!nim||!nama){say("⚠️ Mohon isi NIM dan nama",1);return}
+  const m=myMh();let foto=m&&m.foto;
+  if(file){try{foto=await resize(file)}catch(x){alert("Foto tidak bisa dibaca.");return}}
+  const o={nama,t:(m&&m.t)||Date.now(),u:Date.now(),owner:REG.uid};if(foto)o.foto=foto;
+  try{
+   if(REG.mode==="cloud"){await REG.db.doc("mhs/"+REG.uid).set(o);await REG.db.doc("mhsn/"+REG.uid).set({nim});MH.cloud[REG.uid]=o;MH.nim[REG.uid]=nim}
+   else{o.nim=nim;const i=DB.mhs.findIndex(x=>x.owner===REG.uid);if(i>=0)DB.mhs[i]=o;else DB.mhs.push(o);save()}
+   render();say(m?"✅ Perubahan disimpan":"✅ Data Anda berhasil ditambahkan");
+  }catch(x){say("⚠️ Gagal menyimpan. Akun ini mungkin belum diizinkan menulis data. Hubungi admin.",1)}};
+ const d=$("sdel");
+ if(d)d.onclick=async()=>{if(!confirm("Hapus data Anda? Anda bisa menambahkannya lagi nanti."))return;
+  try{
+   if(REG.mode==="cloud"){await REG.db.doc("mhs/"+REG.uid).delete();await REG.db.doc("mhsn/"+REG.uid).delete();delete MH.cloud[REG.uid];delete MH.nim[REG.uid]}
+   else{const i=DB.mhs.findIndex(x=>x.owner===REG.uid);if(i>=0)DB.mhs.splice(i,1);save()}
+   render();say("✅ Data Anda dihapus. Anda bisa menambahkannya lagi.");
+  }catch(x){say("⚠️ Gagal menghapus data.",1)}};
+}
+const NT=new Set();let ntT;
+function ntf(msg,label,fn){const el=$("nt");$("ntx").textContent=msg;const b=$("ntb");b.textContent=label;b.onclick=()=>{el.classList.remove("on");fn()};$("ntc").onclick=()=>el.classList.remove("on");el.classList.add("on");clearTimeout(ntT);ntT=setTimeout(()=>el.classList.remove("on"),20000)}
+function notifyNew(){
+ if(!REG.ready||!(admin||REG.owner))return;
+ const pend=regList().filter(x=>x.st==="menunggu"),fresh=pend.filter(x=>!NT.has(x.id+":"+x.t));
+ pend.forEach(x=>NT.add(x.id+":"+x.t));
+ if(!fresh.length||(admin&&tab==="pendaftar"))return;
+ const msg=fresh.length===1?`🔔 ${fresh[0].nama} mendaftar dan menunggu persetujuan`:`🔔 ${fresh.length} pendaftar baru menunggu persetujuan`;
+ if(admin)ntf(msg,"Lihat",()=>{tab="pendaftar";render()});else ntf(msg,"Login Admin",()=>$("auth").click());
+}
+function refreshUI(){applyGate();nav();
+ const sig=JSON.stringify([Object.keys(MH.cloud).map(u=>u+":"+(MH.cloud[u].u||MH.cloud[u].t||0)),Object.keys(MH.nim).map(u=>u+MH.nim[u]),stOf(REG.uid),admin]),ch=sig!==lastSig;lastSig=sig;
+ if(admin&&tab==="pendaftar")renderReg();else if(ch&&tab==="mhs")render()}
+let gk="",gateOpen=false;
+function applyGate(){
+ if(admin)gateOpen=false;
+ const g=$("gate");g.style.display=gateOpen?"flex":"none";
+ if(gateOpen)drawGate();
+ const b=$("rbtn"),st=REG.ready?stOf(REG.uid):null;
+ b.style.display=admin?"none":"";
+ b.textContent=st==="menunggu"?"⏳ Menunggu":st==="disetujui"?"✅ Terdaftar":st==="ditolak"?"📝 Daftar ulang":"📝 Daftar";
+ notifyNew();
+}
+function drawGate(){
+ const st=REG.ready?(stOf(REG.uid)||"none"):"load",r=REG.regs[REG.uid];
+ const key=st+"|"+(r?r.t:0)+"|"+REG.mode+REG.canWrite;
+ if(key===gk)return;gk=key;
+ const form=REG.canWrite?`<h2>Daftar Mahasiswa</h2><p class="mu" style="margin-bottom:14px">Isi nama dan NIM Anda. Setelah admin menyetujui, status Anda berubah menjadi Terdaftar. Web tetap bisa dilihat siapa saja.</p><label>Nama lengkap</label><input id="gn" autocomplete="name"><label>NIM</label><input id="gi" inputmode="numeric" autocomplete="off"><div id="gm" class="fmmsg"></div><button class="btn" id="gb">Daftar</button>`:`<h2>Belum bisa mendaftar</h2><p class="mu">Akun ini belum diizinkan mendaftar. Hubungi admin kelas untuk diberi akses.</p>`;
+ let body;
+ if(st==="load")body=`<p class="mu">Memeriksa akses...</p>`;
+ else if(st==="menunggu")body=`<div class="gst">⏳</div><h2>Menunggu persetujuan</h2><p class="mu" style="margin-bottom:14px">Halo <b>${esc(r.nama)}</b> (NIM ${esc(r.nim)}). Pendaftaran Anda sudah terkirim. Status Anda akan berubah menjadi Terdaftar setelah admin menyetujui.</p><p class="fmmsg" style="text-align:center;margin:0 0 14px;color:#8ee6c0">🤲 sabar broo, sesungguhnya orang yang sabar di sayang tuhan</p><button class="btn" id="gchk">Cek status</button>`;
+ else if(st==="disetujui")body=`<div class="gst">✅</div><h2>Anda sudah terdaftar</h2><p class="mu">Selamat, <b>${esc(r.nama)}</b> (NIM ${esc(r.nim)}). Pendaftaran Anda sudah disetujui admin.</p>`;
+ else body=(st==="ditolak"?`<div class="fmmsg bad" style="margin-bottom:12px">⚠️ Pendaftaran Anda ditolak admin. Periksa data lalu daftar ulang, atau hubungi admin.</div>`:"")+form;
+ const note=REG.mode==="local"?`<p class="mu" style="margin-top:14px;font-size:.78rem">Mode lokal: pendaftaran tersimpan di browser ini.</p>`:"";
+ $("gate").innerHTML=`<div class="card gc"><div class="brand" style="justify-content:center;margin-bottom:16px"><div class="logo">🎓</div><div><h1>Kelas Informatika C</h1><small>Portal informasi CODEVERIA</small></div></div>${body}${note}<p style="margin-top:16px"><button class="del" id="gx" style="color:var(--mu);border-color:var(--bd)">Tutup</button></p></div>`;
+ $("gx").onclick=()=>{gateOpen=false;applyGate()};
+ const chk=$("gchk");if(chk)chk.onclick=()=>{if(REG.mode==="local"){const o=lread();REG.regs=o.regs||{};REG.dec=o.dec||{}}refreshUI()};
+ const gb=$("gb");
+ if(gb)gb.onclick=async()=>{const n=$("gn").value.trim(),i=$("gi").value.trim(),m=$("gm");
+  if(!n||!i){m.className="fmmsg bad";m.textContent="⚠️ Mohon isi nama dan NIM";return}
+  gb.disabled=true;
+  try{await regSubmit(n,i);gk="";refreshUI()}catch(e){m.className="fmmsg bad";m.textContent="⚠️ Pendaftaran gagal terkirim. Akun ini mungkin belum diizinkan menulis data. Hubungi admin.";gb.disabled=false}};
+}
+let rf="semua";
+function renderReg(){
+ const L=regList(),c=x=>L.filter(y=>y.st===x).length,F=rf==="semua"?L:L.filter(x=>x.st===rf);
+ const fmt=t=>new Date(t).toLocaleString("id-ID",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+ const info=REG.mode==="cloud"?(REG.owner?"☁️ Mode online: pendaftar dari semua perangkat masuk ke sini.":"☁️ Mode online, tetapi hanya pemilik web yang bisa melihat dan menyetujui pendaftar."):"⚠️ Mode lokal: hanya pendaftaran dari browser ini yang tampil di sini. Pendaftar dari perangkat lain baru masuk ke daftar ini kalau web dibuka lewat akun claude.ai dan pendaftar juga login dengan akses Contributor.";
+ let h=`<div class="card"><h2>📝 Pendaftar</h2><p class="mu">${info} Yang terbaru ada di paling atas.</p><div class="fl">${[["semua","Semua",L.length],["menunggu","Menunggu",c("menunggu")],["disetujui","Disetujui",c("disetujui")],["ditolak","Ditolak",c("ditolak")]].map(([k,t,n])=>`<button class="${rf===k?"on":""}" data-f="${k}">${t} (${n})</button>`).join("")}</div>`;
+ h+=F.length?`<div class="rgs">${F.map((x,k)=>`<div class="rg" style="animation-delay:${Math.min(k,10)*50}ms"><span class="av">${esc((x.nama||"?").trim().charAt(0).toUpperCase())}</span><div class="inf"><b>${esc(x.nama)} ${x.st==="menunggu"?`<span class="newb">BARU</span>`:""}</b><small>NIM ${esc(x.nim)} · ${fmt(x.t)}</small></div><span class="stb st-${x.st}">${x.st}</span><div class="act2">${x.st!=="disetujui"?`<button class="rok" data-a="disetujui" data-id="${esc(x.id)}">✔ Setujui</button>`:""}${x.st!=="ditolak"?`<button class="rno" data-a="ditolak" data-id="${esc(x.id)}">✖ Tolak</button>`:""}<button class="del" data-a="hapus" data-id="${esc(x.id)}">Hapus</button></div></div>`).join("")}</div>`:`<p class="mu" style="margin-top:14px">Belum ada pendaftar.</p>`;
+ $("main").innerHTML=h+`</div>`;
+ document.querySelectorAll(".fl button").forEach(b=>b.onclick=()=>{rf=b.dataset.f;renderReg()});
+ document.querySelectorAll(".rg [data-a]").forEach(b=>b.onclick=async()=>{const id=b.dataset.id,a=b.dataset.a;
+  try{if(a==="hapus")await regRemove(id);else await regDecide(id,a)}catch(e){alert("Gagal: hanya pemilik web (admin) yang boleh menyetujui, menolak, atau menghapus pendaftar.")}
+  refreshUI()});
+}
+function nav(){
+ const pc=(admin||REG.owner)?pending():0,items=[["home","Home"],...Object.keys(SEC).map(k=>[k,SEC[k].t]),...(admin?[["pendaftar","Pendaftar"+(pc?` <span class="nb">${pc}</span>`:"")]]:[])];
+ document.title=(pc?"("+pc+") ":"")+"Kelas Informatika C";
+ $("nav").innerHTML=items.map(([k,t])=>`<button class="${k===tab?"on":""}" data-k="${k}">${IC[k]} ${t}</button>`).join("");
+ $("nav").querySelectorAll("button").forEach(b=>b.onclick=()=>{tab=b.dataset.k;render()});
+ $("auth").innerHTML=admin?"Logout":"Login Admin"+(pc?` <span class="nb">${pc}</span>`:"");
+ $("who").textContent=admin?"👤 Admin":"";
+}
+function render(){
+ applyGate();if(tab==="pendaftar"&&!admin)tab="home";
+ nav();
+ if(tab==="pendaftar"){renderReg();return}
+ if(tab==="home"){
+  $("main").innerHTML=`<div class="card hero"><div class="code" aria-hidden="true"><i style="right:4%;top:6%;font-size:5.5rem;--r:-8deg">&lt;/&gt;</i><i style="right:34%;bottom:-6%;font-size:3.2rem;--r:10deg">&lt;/&gt;</i><i style="right:18%;bottom:8%;font-size:1.6rem;--r:-4deg">&lt;/&gt;</i><i style="left:44%;top:4%;font-size:1.4rem;--r:6deg">&lt;/&gt;</i><i style="right:2%;bottom:2%;font-size:2.4rem;--r:-12deg">&lt;/&gt;</i></div><span class="chip">✨ Semester ini</span><h2>Selamat datang di Kelas Informatika C</h2>
+  <p>Temukan data mahasiswa, mata kuliah, serta jadwal lengkap dengan dosen dan jamnya di satu tempat.</p></div>
+  <div class="grid">${Object.keys(SEC).map(k=>`<div class="card stat"><i>${IC[k]}</i><b>${DB[k].length+(k==="mhs"?Object.keys(MH.cloud).length:0)}</b><span class="mu">${SEC[k].t}</span></div>`).join("")}</div>${ig()}${gal()}`;
+  wireHome();return;
+ }
+ const s=SEC[tab], rows=tab==="mhs"?[...DB.mhs,...cloudRows()]:[...DB[tab]];
+ if(tab==="mk") rows.sort((a,b)=>hr(a.hari)-hr(b.hari)||(a.mulai||"").localeCompare(b.mulai||""));
+ const pre=(tab==="mhs"&&canSelf())?selfCard():"";
+ let h=pre+`<div class="card"><h2>${s.t}</h2>`;
+ if(admin){
+  h+=`<form id="fm">`+(tab==="mhs"?`<div style="grid-column:1/-1;display:flex;align-items:center;gap:14px"><label class="ph" id="ph" title="Klik untuk pilih foto"><b>📷</b><span>Tambah foto</span><input name="foto" type="file" accept="image/*" hidden></label><span class="mu">Klik bulatan untuk menaruh foto mahasiswa (opsional)</span></div>`:"")+s.f.map(([k,l,t,fn])=>{
+   let inp;
+   if(Array.isArray(t)) inp=`<select name="${k}">${t.map(o=>`<option>${esc(o)}</option>`).join("")}</select>`;
+   else if(typeof t==="string"&&SEC[t]) inp=`<select name="${k}">${DB[t].map(o=>`<option>${esc(fn(o))}</option>`).join("")}</select>`;
+   else inp=`<input name="${k}" type="${t||"text"}" autocomplete="off">`;
+   return `<div><label>${l}</label>${inp}</div>`}).join("")+`<button class="btn">+ Tambah</button></form><div id="fmmsg" class="fmmsg">${flash}</div></div><div class="card">`;
+ } else h+=`<p class="mu">${tab==="mhs"?(pre?"Anda hanya bisa mengubah data Anda sendiri. NIM hanya terlihat oleh mahasiswa terdaftar dan admin.":"🔒 Anda hanya melihat foto dan nama. Daftar (tombol kanan atas) dan tunggu persetujuan admin untuk melihat NIM dan menambahkan data diri Anda."):"Login sebagai admin untuk menambah atau menghapus data."}</p>`;
+ if(tab==="mhs")h+=sg(rows)+`</div>`;else{h+=`<div class="tw"><table><thead><tr>`+(tab==="mhs"?"<th>Foto</th>":"")+s.f.map(f=>`<th>${f[1]}</th>`).join("")+(admin?"<th></th>":"")+`</tr></thead><tbody>`;
+ h+=rows.length?rows.map((r,k)=>{const i=DB[tab].indexOf(r),g=tab==="mk",first=!g||k===0||rows[k-1].hari!==r.hari,n=g?rows.filter(x=>x.hari===r.hari).length:1;return `<tr${g&&first&&k>0?` class="gs"`:""}>`+(tab==="mhs"?`<td>${admin?`<button class="avb" data-p="${i}" title="Klik untuk ganti foto">${av(r)}</button>`:av(r)}</td>`:"")+s.f.map(f=>f[0]==="hari"?(first?`<td class="dayc" rowspan="${n}"><span class="bdg">${r.hari?esc(r.hari):"-"}</span></td>`:""):`<td>${esc(r[f[0]]??"")}</td>`).join("")+(admin?`<td><div class="act"><button class="del" data-i="${i}">Hapus</button></div></td>`:"")+`</tr>`}).join(""):`<tr><td colspan="9" class="mu">Belum ada data.</td></tr>`;
+ h+=`</tbody></table></div></div>`;}
+ $("main").innerHTML=h;flash="";if(pre)wireSelf();
+ if(admin){
+  const fi=$("fm").querySelector("input[type=file]");
+  if(fi)fi.onchange=async()=>{if(!fi.files[0])return;try{const u=await resize(fi.files[0]),ph=$("ph");ph.style.backgroundImage=`url(${u})`;ph.classList.add("has")}catch(x){alert("Foto tidak bisa dibaca.")}};
+  $("fm").onsubmit=async e=>{e.preventDefault();const o={};let f=null;new FormData(e.target).forEach((v,k)=>{if(v instanceof File){if(v.size)f=v}else o[k]=String(v).trim()});
+   const need=tab==="mhs"?["nim","nama"]:["nama"],miss=need.filter(k=>!o[k]);
+   if(miss.length){const m=$("fmmsg");m.className="fmmsg bad";m.textContent="⚠️ Mohon isi dulu: "+miss.map(k=>SEC[tab].f.find(x=>x[0]===k)[1]).join(", ");return}
+   if(f){try{o.foto=await resize(f)}catch(x){alert("Foto tidak bisa dibaca.")}}
+   DB[tab].push(o);save();flash="✅ Data berhasil ditambahkan";render()};
+  document.querySelectorAll(".avb").forEach(b=>b.onclick=()=>{const i=document.createElement("input");i.type="file";i.accept="image/*";i.onchange=async()=>{if(!i.files[0])return;try{DB.mhs[+b.dataset.p].foto=await resize(i.files[0]);save();render()}catch(x){alert("Foto tidak bisa dibaca.")}};i.click()});
+  document.querySelectorAll(".del[data-i]").forEach(b=>b.onclick=()=>{DB[tab].splice(+b.dataset.i,1);save();render()});
+  document.querySelectorAll(".del[data-cu]").forEach(b=>b.onclick=async()=>{try{await REG.db.doc("mhs/"+b.dataset.cu).delete();await REG.db.doc("mhsn/"+b.dataset.cu).delete();delete MH.cloud[b.dataset.cu];delete MH.nim[b.dataset.cu];render()}catch(e){alert("Gagal menghapus: hanya pemilik web (admin) yang boleh menghapus data mahasiswa.")}});
+ }
+}
+$("auth").onclick=()=>{
+ if(admin){admin=false;try{sessionStorage.removeItem(SK)}catch(e){}render()}
+ else{$("err").textContent="";$("u").value=$("p").value="";$("md").style.display="flex";hidePw();$("u").focus()}
+};
+$("cx").onclick=()=>$("md").style.display="none";
+$("go").onclick=()=>{
+ if($("u").value===USER&&$("p").value===PASS){admin=true;try{sessionStorage.setItem(SK,"1")}catch(e){}$("md").style.display="none";render()}
+ else $("err").textContent="Username atau password salah.";
+};
+$("p").onkeydown=e=>{if(e.key==="Enter")$("go").click()};
+function hidePw(){$("p").type="password";$("eye").textContent="👁️";$("eye").setAttribute("aria-label","Tampilkan password")}
+$("eye").onclick=()=>{const show=$("p").type==="password";$("p").type=show?"text":"password";$("eye").textContent=show?"🙈":"👁️";$("eye").setAttribute("aria-label",show?"Sembunyikan password":"Tampilkan password");$("p").focus()};
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches){
+ const M=$("main");
+ M.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;const c=e.target.closest(".card");if(!c||c.classList.contains("nt"))return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5,m=c.classList.contains("hero")||c.classList.contains("stat")?12:2.5;c.style.transform=`perspective(900px) rotateX(${(-y*m).toFixed(2)}deg) rotateY(${(x*m).toFixed(2)}deg)`});
+ M.addEventListener("pointerout",e=>{const c=e.target.closest(".card");if(c&&!c.contains(e.relatedTarget))c.style.transform=""});
+}
+load();DB.foto=DB.foto||[];if(!DB.fotoRev){DB.foto.reverse();DB.fotoRev=1;save()}
+$("rbtn").onclick=()=>{gateOpen=true;gk="";applyGate()};
+$("gate").onclick=e=>{if(e.target===$("gate")){gateOpen=false;applyGate()}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&gateOpen){gateOpen=false;applyGate()}});
+render();
+regInit().catch(()=>{}).then(()=>{REG.ready=true;refreshUI()});
+</script>
+</body>
+</html>
